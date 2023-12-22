@@ -1,0 +1,105 @@
+/* General Appearance */
+
+h1{
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Quicksand', monospace;
+    color: rgb(255, 255, 255);
+    text-shadow: 4px 4px 4px #000000;
+    border-radius: 10px;
+    background-color: rgba(19, 57, 27, 0.585);
+    margin-top: 50px;
+}
+
+body{
+    background-image: url(../rock-paper-scissors/images/background.jpg);
+    background-size:90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family:'Quicksand', Courier, monospace;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.container{
+    align-content: center;
+}
+
+/* Game Appearance */
+.container .choices {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  border-radius: 10px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.choice{
+    border-radius: 10px;
+    background-color: rgba(19, 57, 27, 0.585);
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+
+}
+
+.choice:hover{
+    background-color: rgba(19, 57, 27, 0.8);
+}
+
+img{
+    max-width: 30%;
+    height: auto;
+}
+
+/* Scoreboard */
+.container .scoreboard{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.scoreboard .player-score{
+    border-radius: 20px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 10px;
+    border-color: #000000;
+    border-style: solid;
+}
+
+.scoreboard .computer-score{
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px;
+    border-color: #000000;
+    border-style: solid;
+}
+
+.result{
+    font-size: 15px;
+    font-family: monospace;
+    font-weight: bold;
+    align-self: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+
+/* Button */
+.restart {
+    background-color: rgb(253, 253, 253);
+    font-family: 'Quicksand', monospace;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
