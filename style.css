@@ -12,7 +12,7 @@ h1{
 }
 
 body{
-    background-image: url(Rock-Paper-Scissors/images/background.jpg);
+    background-image: url(../Rock-Paper-Scissors/images/background.jpg);
     background-size:90%;
     background-repeat: no-repeat;
     background-position: center;
