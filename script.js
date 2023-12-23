@@ -1,5 +1,14 @@
 let playerScore = 0;
 let computerScore = 0;
+let playerScoreDisplay = document.querySelector('.player-score-numeric');
+let computerScoreDisplay = document.querySelector('.computer-score-numeric');
+let resultDisplay = document.querySelector('.result');
+
+
+let restartButton = document.querySelector('#restart');
+restartButton.addEventListener('click', () => {
+    location.reload()
+});
 
 function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
@@ -7,77 +16,55 @@ function getComputerChoice() {
     return choices[randomNumber];
 }
 
-function getPlayerChoice(){
-    let PlayerChoice = document.getElementById("playerChoice").value;
-    return PlayerChoice;
+let buttons = document.querySelectorAll('.choice');
+buttons.forEach((button) =>
+    button.addEventListener('click', () => {
+        console.log(button.id);
+        startGame(button.id);
+    }
+));
+
+function startGame(playerChoice) {
+    const computerChoice = getComputerChoice();
+    const result = getResult(playerChoice, computerChoice);
+    displayResult(result, playerChoice, computerChoice);
 }
 
-function playRound(){
-    const PlayerSelection = getPlayerChoice();
-    const ComputerSelection = getComputerChoice();
-    
-    if (PlayerSelection.toLowerCase() === ComputerSelection.toLowerCase()){
-        alert("It's a tie!");
-        return "It's a tie!";
-    }
-    else if (PlayerSelection.toLowerCase() === "rock"){
-        if (ComputerSelection.toLowerCase() === "scissors"){
-            playerScore++;
-            alert("You win! Rock beats Scissors");
-            return "You win! Rock beats Scissors";
-        }
-        else {
-            computerScore++;
-            alert("You lose! Paper beats Rock");
-            return "You lose! Paper beats Rock";
-        }
-    }
-    else if (PlayerSelection.toLowerCase() === "paper"){
-        if (ComputerSelection.toLowerCase() === "rock"){
-            playerScore++;
-            alert("You win! Paper beats Rock");
-            return "You win! Paper beats Rock";
-        }
-        else {
-            computerScore++;
-            alert("You lose! Scissors beats Paper");
-            return "You lose! Scissors beats Paper";
-        }
-    }
-    else if (PlayerSelection.toLowerCase() === "scissors"){
-        if (ComputerSelection.toLowerCase() === "paper"){
-            playerScore++;
-            alert("You win! Scissors beats Paper");
-            return "You win! Scissors beats Paper";
-        }
-        else {
-            computerScore++;
-            alert("You lose! Rock beats Scissors");
-            return "You lose! Rock beats Scissors";
-        }
-    }
-    else {
-        alert("Invalid input");
-        return "Invalid input";
-    }
-}
-
-function playGame(){
-    for (let i = 0; i < 5; i++){
-        console.log(playRound());
-    }
-    if(playerScore > computerScore){
-        alert("You win! " + playerScore + " to " + computerScore);
-        return "You win! " + playerScore + " to " + computerScore;
+function getResult(playerChoice, computerChoice) {
+    if (playerChoice === computerChoice) {
+        return 'draw';
+    } else if (
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')
+    ) {
+        playerScore++;
+        playerScoreDisplay.textContent = playerScore;
+        return 'win';
     } else {
-        alert("You lose! " + computerScore + " to " + playerScore);
-        return "You lose! " + computerScore + " to " + playerScore;
-    
+        computerScore++;
+        computerScoreDisplay.textContent = computerScore;
+        return 'lose';
     }
 }
 
-// const restartButton = document.querySelector('#restart');
-// restartButton.onClick = () => {playGame()};
+function displayResult(result, playerChoice, computerChoice) {
+    if (playerScore === 5 || computerScore === 5) {
+        if (playerScore > computerScore) {
+            resultDisplay.textContent = `You win the game!`;
+        } else {
+            resultDisplay.textContent = `You lose the game!`;
+        }
+        buttons.forEach((button) => button.disabled = true);
+    } else if (result === 'win') {
+        resultDisplay.textContent = `You win!\n ${capitalize(playerChoice)} beats ${capitalize(computerChoice)}`;
+    } else if (result === 'lose') {
+        resultDisplay.textContent = `You lose!\n ${capitalize(computerChoice)} beats ${capitalize(playerChoice)}`;
+    } else {
+        resultDisplay.textContent = `It's a draw!`;
+    }
+}
 
-
-playGame();
+function capitalize(word) {
+    return word[0].toUpperCase() + word.slice(1);
+}
