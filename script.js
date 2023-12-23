@@ -4,18 +4,20 @@ let playerScoreDisplay = document.querySelector('.player-score-numeric');
 let computerScoreDisplay = document.querySelector('.computer-score-numeric');
 let resultDisplay = document.querySelector('.result');
 
-
+// Restarting the game
 let restartButton = document.querySelector('#restart');
 restartButton.addEventListener('click', () => {
     location.reload()
 });
 
+// Game logic
 function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
     const randomNumber = Math.floor(Math.random() * 3);
     return choices[randomNumber];
 }
 
+// Documenting the player's choice
 let buttons = document.querySelectorAll('.choice');
 buttons.forEach((button) =>
     button.addEventListener('click', () => {
@@ -24,6 +26,7 @@ buttons.forEach((button) =>
     }
 ));
 
+// The game itself
 function startGame(playerChoice) {
     const computerChoice = getComputerChoice();
     const result = getResult(playerChoice, computerChoice);
